@@ -1,5 +1,4 @@
-﻿using Data;
-using LaneDataSimulator.util;
+﻿using LaneDataSimulator.util;
 using MessageHub;
 using MessageHub.Model;
 using MessageHub.util;
@@ -16,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TempLate;
 
 namespace LaneDataSimulator
 {
@@ -223,7 +223,7 @@ namespace LaneDataSimulator
                                 workingJobQueue.releaseRuleResults = JsonConvert.DeserializeObject<List<ReleaseRuleResult>>(value);
                                 break;
                             case "containers":
-                                workingJobQueue.containers = JsonConvert.DeserializeObject<List<Data.Container>>(value);
+                                workingJobQueue.containers = JsonConvert.DeserializeObject<List<TempLate.Container>>(value);
                                 break;
                             case "processes":
                                 workingJobQueue.processes = JsonConvert.DeserializeObject<List<Process>>(value);
@@ -241,10 +241,10 @@ namespace LaneDataSimulator
                         switch (counts[1])
                         {
                             case "containers":
-                                workingJobQueue.containers[index] = JsonConvert.DeserializeObject<Data.Container>(value);
+                                workingJobQueue.containers[index] = JsonConvert.DeserializeObject<TempLate.Container>(value);
                                 break;
                             case "processes":
-                                workingJobQueue.processes[index] = JsonConvert.DeserializeObject<Data.Process>(value);
+                                workingJobQueue.processes[index] = JsonConvert.DeserializeObject<Process>(value);
                                 break;
                             case "releaseRuleResults":
                                 workingJobQueue.releaseRuleResults[index] = JsonConvert.DeserializeObject<ReleaseRuleResult>(value);
@@ -260,7 +260,7 @@ namespace LaneDataSimulator
                                 int cindex = Convert.ToInt32(counts[2]);
                                 Dictionary<string, dynamic> cdic = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(JsonConvert.SerializeObject(workingJobQueue.containers[cindex]));
                                 cdic[counts.Last()] = value.Replace("\"", "");
-                                dynamic object4 = JsonConvert.DeserializeObject<Data.Container>(JsonConvert.SerializeObject(cdic));
+                                dynamic object4 = JsonConvert.DeserializeObject<TempLate.Container>(JsonConvert.SerializeObject(cdic));
                                 workingJobQueue.containers[cindex] = object4;
                                 break;
                             case "processes":
@@ -672,9 +672,5 @@ namespace LaneDataSimulator
             }
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

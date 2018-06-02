@@ -119,13 +119,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Data\Template.csproj">
-      <Project>{0633BC59-49F8-4355-B5C1-544E930A52F7}</Project>
-      <Name>Template</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MessageHub\MessageHubClient.csproj">
       <Project>{D7FC368C-8ADE-4B1C-94C3-53F33F0144DD}</Project>
       <Name>MessageHubClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Template\Template.csproj">
+      <Project>{0633BC59-49F8-4355-B5C1-544E930A52F7}</Project>
+      <Name>Template</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
