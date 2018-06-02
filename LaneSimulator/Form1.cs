@@ -417,6 +417,7 @@ namespace LaneDataSimulator
                 textBoxQueueNodeInfo.Text = "";
                 LogTextBox.Clear();
                 comboBox1.Items.Clear();
+                comboBox1.Text = "";
                 buttonConnectMessageHub.Text = "注册监听";
             }
 
