@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MessageHub.Model.Pool;
 
 namespace MessageHub
 {
@@ -85,14 +86,14 @@ namespace MessageHub
                     reciveMessage?.Invoke(convertData(data));
                 });
 
-                //var redis = RedisManager.Instance.GetSubscriber();
-                //redis.SubscribeAsync(laneCode, (chanel, message) =>
-                //{
-                //    reciveMessage?.Invoke(message);
-                //});
-
-                //var db = RedisManager.Instance.GetDatabase();
-                //db.PublishAsync(laneCode, "监听注册登陆成功");
+                socket.On(Socket.EVENT_ERROR, (data) =>
+                {
+                    reciveHubError?.Invoke(convertData(data));
+                });
+                socket.On(Socket.EVENT_CONNECT_ERROR, (data) =>
+                {
+                    reciveHubError?.Invoke(data.ToString());
+                });
             }
             catch (Exception ex)
             {
@@ -112,7 +113,18 @@ namespace MessageHub
             {
                 socket.Emit("createMessage", (data) =>
                 {
-                    reciveStatus?.Invoke(convertData(data));
+                    Response res = JsonConvert.DeserializeObject<Response>(data.ToString());
+                    if(res.code!=200)
+                    {
+                        reciveStatus?.Invoke("推送消息发生错误");
+                        reciveStatus?.Invoke("尝试创建池");
+                        socket.Emit("createPool", JsonConvert.SerializeObject(new PoolCUR(messagecreate.poolName, "public", "updateTime", true, "", laneCode)));
+                        AddMessage(messagecreate);
+                    }else
+                    {
+                        reciveStatus?.Invoke(res.message);
+                    }
+
                 }, JsonConvert.SerializeObject(messagecreate));
             }
             catch (Exception ex)//尝试用API的方式发送
@@ -137,8 +149,7 @@ namespace MessageHub
                 string strobj = JsonConvert.SerializeObject(obj);
                 return strobj;
             }
-            return (string)obj;
-        }
+            return (string)obj; }
 
 
         public void deleteMessage(MessageD messageDel)

@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{0633BC59-49F8-4355-B5C1-544E930A52F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template", "Data\Template.csproj", "{0633BC59-49F8-4355-B5C1-544E930A52F7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageHubClient", "MessageHub\MessageHubClient.csproj", "{D7FC368C-8ADE-4B1C-94C3-53F33F0144DD}"
 EndProject

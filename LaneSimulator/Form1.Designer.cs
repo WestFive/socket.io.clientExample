@@ -34,7 +34,7 @@
             this.textBoxLaneCode = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonConnectMessageHub = new System.Windows.Forms.Button();
-            this.TextBoxapiAddress = new System.Windows.Forms.TextBox();
+            this.textBoxapiAddress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxMessageHubUrl = new System.Windows.Forms.TextBox();
@@ -54,6 +54,10 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.LogTextBox = new System.Windows.Forms.TextBox();
+            this.textLanePoolName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.textJobQueuePoolName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabLane.SuspendLayout();
@@ -65,24 +69,29 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.textJobQueuePoolName);
+            this.panel1.Controls.Add(this.label6);
+            this.panel1.Controls.Add(this.textLanePoolName);
+            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.textBoxlaneName);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.textBoxLaneCode);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.buttonConnectMessageHub);
-            this.panel1.Controls.Add(this.TextBoxapiAddress);
+            this.panel1.Controls.Add(this.textBoxapiAddress);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.textBoxMessageHubUrl);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1164, 76);
+            this.panel1.Size = new System.Drawing.Size(1164, 104);
             this.panel1.TabIndex = 0;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // textBoxlaneName
             // 
-            this.textBoxlaneName.Location = new System.Drawing.Point(592, 41);
+            this.textBoxlaneName.Location = new System.Drawing.Point(592, 39);
             this.textBoxlaneName.Name = "textBoxlaneName";
             this.textBoxlaneName.Size = new System.Drawing.Size(233, 21);
             this.textBoxlaneName.TabIndex = 9;
@@ -92,11 +101,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(527, 44);
+            this.label4.Location = new System.Drawing.Point(527, 42);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
+            this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 8;
-            this.label4.Text = "车道名称:";
+            this.label4.Text = "车道名称";
             // 
             // textBoxLaneCode
             // 
@@ -109,52 +118,52 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.Red;
+            this.label3.ForeColor = System.Drawing.Color.Black;
             this.label3.Location = new System.Drawing.Point(527, 15);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 6;
-            this.label3.Text = "车道代码:";
+            this.label3.Text = "车道代码";
             // 
             // buttonConnectMessageHub
             // 
-            this.buttonConnectMessageHub.Location = new System.Drawing.Point(899, 12);
+            this.buttonConnectMessageHub.Location = new System.Drawing.Point(894, 12);
             this.buttonConnectMessageHub.Name = "buttonConnectMessageHub";
-            this.buttonConnectMessageHub.Size = new System.Drawing.Size(117, 50);
+            this.buttonConnectMessageHub.Size = new System.Drawing.Size(117, 75);
             this.buttonConnectMessageHub.TabIndex = 0;
             this.buttonConnectMessageHub.Text = "注册监听";
             this.buttonConnectMessageHub.UseVisualStyleBackColor = true;
             this.buttonConnectMessageHub.Click += new System.EventHandler(this.buttonConnectMessageHub_Click);
             // 
-            // TextBoxapiAddress
+            // textBoxapiAddress
             // 
-            this.TextBoxapiAddress.Location = new System.Drawing.Point(166, 41);
-            this.TextBoxapiAddress.Name = "TextBoxapiAddress";
-            this.TextBoxapiAddress.Size = new System.Drawing.Size(233, 21);
-            this.TextBoxapiAddress.TabIndex = 4;
-            this.TextBoxapiAddress.Text = "http://dev.pingfang.net/messagehubv2";
+            this.textBoxapiAddress.Location = new System.Drawing.Point(202, 41);
+            this.textBoxapiAddress.Name = "textBoxapiAddress";
+            this.textBoxapiAddress.Size = new System.Drawing.Size(233, 21);
+            this.textBoxapiAddress.TabIndex = 4;
+            this.textBoxapiAddress.Text = "http://dev.pingfang.net/messagehubv2";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(23, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(113, 12);
+            this.label2.Size = new System.Drawing.Size(119, 12);
             this.label2.TabIndex = 2;
-            this.label2.Text = "消息提交地址(API):";
+            this.label2.Text = "消息提交地址（API）";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(23, 15);
+            this.label1.Location = new System.Drawing.Point(23, 17);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.Size = new System.Drawing.Size(161, 12);
             this.label1.TabIndex = 1;
-            this.label1.Text = "消息服务地址：";
+            this.label1.Text = "消息服务地址（MessageHub）";
             // 
             // textBoxMessageHubUrl
             // 
-            this.textBoxMessageHubUrl.Location = new System.Drawing.Point(166, 12);
+            this.textBoxMessageHubUrl.Location = new System.Drawing.Point(202, 14);
             this.textBoxMessageHubUrl.Name = "textBoxMessageHubUrl";
             this.textBoxMessageHubUrl.Size = new System.Drawing.Size(233, 21);
             this.textBoxMessageHubUrl.TabIndex = 0;
@@ -165,10 +174,10 @@
             this.tabMain.Controls.Add(this.tabLane);
             this.tabMain.Controls.Add(this.tabJobQueue);
             this.tabMain.Enabled = false;
-            this.tabMain.Location = new System.Drawing.Point(0, 82);
+            this.tabMain.Location = new System.Drawing.Point(0, 102);
             this.tabMain.Name = "tabMain";
             this.tabMain.SelectedIndex = 0;
-            this.tabMain.Size = new System.Drawing.Size(1161, 476);
+            this.tabMain.Size = new System.Drawing.Size(1161, 456);
             this.tabMain.TabIndex = 1;
             this.tabMain.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabMain_Selected);
             // 
@@ -180,14 +189,14 @@
             this.tabLane.Location = new System.Drawing.Point(4, 22);
             this.tabLane.Name = "tabLane";
             this.tabLane.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLane.Size = new System.Drawing.Size(1153, 450);
+            this.tabLane.Size = new System.Drawing.Size(1153, 430);
             this.tabLane.TabIndex = 0;
             this.tabLane.Text = "Lane";
             this.tabLane.UseVisualStyleBackColor = true;
             // 
             // textLaneSend
             // 
-            this.textLaneSend.Location = new System.Drawing.Point(457, 414);
+            this.textLaneSend.Location = new System.Drawing.Point(458, 394);
             this.textLaneSend.Name = "textLaneSend";
             this.textLaneSend.Size = new System.Drawing.Size(690, 30);
             this.textLaneSend.TabIndex = 0;
@@ -201,14 +210,14 @@
             this.textBoxLaneNodeInfo.Multiline = true;
             this.textBoxLaneNodeInfo.Name = "textBoxLaneNodeInfo";
             this.textBoxLaneNodeInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxLaneNodeInfo.Size = new System.Drawing.Size(691, 402);
+            this.textBoxLaneNodeInfo.Size = new System.Drawing.Size(691, 382);
             this.textBoxLaneNodeInfo.TabIndex = 2;
             // 
             // treeLane
             // 
             this.treeLane.Location = new System.Drawing.Point(5, 6);
             this.treeLane.Name = "treeLane";
-            this.treeLane.Size = new System.Drawing.Size(446, 438);
+            this.treeLane.Size = new System.Drawing.Size(446, 418);
             this.treeLane.TabIndex = 0;
             this.treeLane.MouseDown += new System.Windows.Forms.MouseEventHandler(this.tree_MouseDown);
             // 
@@ -221,14 +230,15 @@
             this.tabJobQueue.Location = new System.Drawing.Point(4, 22);
             this.tabJobQueue.Name = "tabJobQueue";
             this.tabJobQueue.Padding = new System.Windows.Forms.Padding(3);
-            this.tabJobQueue.Size = new System.Drawing.Size(1153, 450);
+            this.tabJobQueue.Size = new System.Drawing.Size(1153, 430);
             this.tabJobQueue.TabIndex = 1;
             this.tabJobQueue.Text = "JobQueue";
             this.tabJobQueue.UseVisualStyleBackColor = true;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(454, 414);
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(454, 394);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(695, 30);
             this.button1.TabIndex = 3;
@@ -242,7 +252,7 @@
             this.textBoxQueueNodeInfo.Multiline = true;
             this.textBoxQueueNodeInfo.Name = "textBoxQueueNodeInfo";
             this.textBoxQueueNodeInfo.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.textBoxQueueNodeInfo.Size = new System.Drawing.Size(696, 402);
+            this.textBoxQueueNodeInfo.Size = new System.Drawing.Size(696, 382);
             this.textBoxQueueNodeInfo.TabIndex = 4;
             // 
             // JobQueueControllerPanel
@@ -289,7 +299,7 @@
             // 
             this.JobQueueTree.Location = new System.Drawing.Point(3, 59);
             this.JobQueueTree.Name = "JobQueueTree";
-            this.JobQueueTree.Size = new System.Drawing.Size(445, 385);
+            this.JobQueueTree.Size = new System.Drawing.Size(445, 371);
             this.JobQueueTree.TabIndex = 0;
             // 
             // panel2
@@ -321,6 +331,40 @@
             this.LogTextBox.Size = new System.Drawing.Size(1164, 126);
             this.LogTextBox.TabIndex = 0;
             // 
+            // textLanePoolName
+            // 
+            this.textLanePoolName.Location = new System.Drawing.Point(202, 68);
+            this.textLanePoolName.Name = "textLanePoolName";
+            this.textLanePoolName.Size = new System.Drawing.Size(233, 21);
+            this.textLanePoolName.TabIndex = 11;
+            this.textLanePoolName.Text = "lane";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "车道池名称";
+            // 
+            // textJobQueuePoolName
+            // 
+            this.textJobQueuePoolName.Location = new System.Drawing.Point(592, 66);
+            this.textJobQueuePoolName.Name = "textJobQueuePoolName";
+            this.textJobQueuePoolName.Size = new System.Drawing.Size(233, 21);
+            this.textJobQueuePoolName.TabIndex = 13;
+            this.textJobQueuePoolName.Text = "jobQueue";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(515, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "作业池名称";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -332,7 +376,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "LaneSimulator";
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.tabMain.ResumeLayout(false);
@@ -365,7 +409,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBoxMessageHubUrl;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TextBoxapiAddress;
+        private System.Windows.Forms.TextBox textBoxapiAddress;
         private System.Windows.Forms.Button buttonConnectMessageHub;
         private System.Windows.Forms.Button textLaneSend;
         private System.Windows.Forms.Button button6;
@@ -378,6 +422,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBoxQueueNodeInfo;
+        private System.Windows.Forms.TextBox textLanePoolName;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textJobQueuePoolName;
+        private System.Windows.Forms.Label label6;
     }
 }
 

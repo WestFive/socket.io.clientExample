@@ -13,6 +13,8 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LaneDataSimulator
@@ -72,9 +74,10 @@ namespace LaneDataSimulator
                     if (null != workingnode.Parent)
                     {
                         treenode = FindNode(node, workingnode.Parent.Text + workingnode.Text);
-                    }else
+                    }
+                    else
                     {
-                        treenode = FindNode(node,workingnode.Text);
+                        treenode = FindNode(node, workingnode.Text);
                     }
                     if (treenode != null)
                     {
@@ -104,7 +107,7 @@ namespace LaneDataSimulator
             }
             else
             {
-                if ("lane"== strValue || "jobQueue" == strValue) return tnParent;
+                if ("lane" == strValue || "jobQueue" == strValue) return tnParent;
             }
 
             TreeNode tnRet = null;
@@ -317,11 +320,11 @@ namespace LaneDataSimulator
                 {
                     case MessageType.JobQueue:
                         //更新消息服务Queue数据
-                        messagehubClient.AddMessage(new MessageHub.Model.Message.MessageCUR("jobQueue", new MessageHub.Model.Message.Message(workingJobQueue.jobQueueCode, JsonConvert.SerializeObject(workingJobQueue), "", "")));
+                        messagehubClient.AddMessage(new MessageHub.Model.Message.MessageCUR(textJobQueuePoolName.Text, new MessageHub.Model.Message.Message(workingJobQueue.jobQueueCode, JsonConvert.SerializeObject(workingJobQueue), "", "")));
                         break;
                     case MessageType.Lane:
                         //更新消息服务Lane数据                      
-                        messagehubClient.AddMessage(new MessageHub.Model.Message.MessageCUR("lane", new MessageHub.Model.Message.Message(lane.laneCode, JsonConvert.SerializeObject(lane), "", "")));
+                        messagehubClient.AddMessage(new MessageHub.Model.Message.MessageCUR(textLanePoolName.Text, new MessageHub.Model.Message.Message(lane.laneCode, JsonConvert.SerializeObject(lane), "", "")));
                         break;
 
                 }
@@ -366,38 +369,63 @@ namespace LaneDataSimulator
 
                 }
                 reload(lane, treeLane); //默认加载lane
-                if (null == messagehubClient)
-                {
-                    messagehubClient = new MessageHubClient(textBoxMessageHubUrl.Text, TextBoxapiAddress.Text, textBoxLaneCode.Text);
+                reloadUI();//重载UI
 
-                   // buttonConnectMessageHub.Enabled = false;
-                    tabMain.Enabled = true;
 
-                }
-                messagehubClient.HubInit();
+            }
+            else
+            {
+                reloadUI();
+            }
+        }
+
+
+        private void reloadUI()
+        {
+            if (null == messagehubClient)
+            {
+                messagehubClient = new MessageHubClient(textBoxMessageHubUrl.Text, textBoxapiAddress.Text, textBoxLaneCode.Text);
+                tabMain.Enabled = true;
+                button1.Enabled = true;
+                textLaneSend.Enabled = true;
                 messagehubClient.reciveMessage += MessagehubClient_reciveMessage;
                 messagehubClient.reciveStatus += MessagehubClient_reciveStatus;
                 messagehubClient.reciveHubError += MessagehubClient_reciveHubError;
-
+                messagehubClient.HubInit();
                 buttonConnectMessageHub.Text = "取消监听";
+
+                textLanePoolName.Enabled = false;
+                textBoxLaneCode.Enabled = false;
+                textBoxapiAddress.Enabled = false;
+                textBoxMessageHubUrl.Enabled = false;
+                textJobQueuePoolName.Enabled = false;
+                textLanePoolName.Enabled = false;
+                textBoxlaneName.Enabled = false;
+
             }
+
             else if (buttonConnectMessageHub.Text == "取消监听")
             {
                 JobQueueTree.Nodes.Clear();
                 treeLane.Nodes.Clear();
-
-                button1.Enabled = false;
+                //button1.Enabled = false;
                 textLaneSend.Enabled = false;
                 tabMain.Enabled = false;
                 messagehubClient.Dispose();
                 messagehubClient = null;
+                textBoxLaneNodeInfo.Text = "";
+                textBoxQueueNodeInfo.Text = "";
                 LogTextBox.Clear();
+                comboBox1.Items.Clear();
                 buttonConnectMessageHub.Text = "注册监听";
             }
 
 
-
         }
+
+
+
+
 
         private void MessagehubClient_reciveHubError(string str)
         {
@@ -430,7 +458,7 @@ namespace LaneDataSimulator
                     Invoke(new MethodInvoker(() =>
                     {
                         comboBox1.SelectedItem = queue.jobQueueCode;
-                        UpdateData("jobQueue", JsonConvert.SerializeObject(queue));
+                        UpdateData(textJobQueuePoolName.Text, JsonConvert.SerializeObject(queue));
                         addLog("接收到修改后的作业,已更新");
                         reload(workingJobQueue, JobQueueTree);
                     }));
@@ -500,7 +528,8 @@ namespace LaneDataSimulator
                 //{
                 //    MessageBox.Show(node.Text);
                 //}));
-            }catch(Exception EX)
+            }
+            catch (Exception EX)
             {
                 MessageBox.Show("发生错误,操作回滚,请稍后重新尝试", "错误");
             }
@@ -527,10 +556,22 @@ namespace LaneDataSimulator
                 reload(workingJobQueue, JobQueueTree);
                 JobQueueTree.SelectedNode = JobQueueTree.Nodes[0];
                 textBoxQueueNodeInfo.Text = JsonUtil.ConvertJsonString(JsonConvert.SerializeObject(JobQueueTree.SelectedNode.Tag));
+
+                UpdateData(JobQueueTree.SelectedNode.FullPath, textBoxQueueNodeInfo.Text);//直接推送
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString());
+            }
+            // SendEnable();
+            if (button1.Enabled == false)
+            {
+                button1.Enabled = true;
+            }
+            if(button6.Enabled ==false)
+            {
+                button6.Enabled = true;
             }
         }
 
@@ -568,7 +609,8 @@ namespace LaneDataSimulator
                 {
                     button6.Enabled = true;
                 }
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show("发生错误,操作回滚,请稍后重新尝试", "错误");
             }
@@ -581,13 +623,14 @@ namespace LaneDataSimulator
         /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
+
             if (comboBox1.Text == "")
             {
                 MessageBox.Show("请新建或重新载入jobQueue数据!", "Warning");
                 return;
             }
 
-            messagehubClient.deleteMessage(new MessageHub.Model.Message.MessageD("jobQueue", comboBox1.Text));
+            messagehubClient.deleteMessage(new MessageHub.Model.Message.MessageD(textJobQueuePoolName.Text, comboBox1.Text));
             JobQueues.Remove(comboBox1.Text);
             comboBox1.Items.Remove(comboBox1.Text);
             comboBox1.Text = "";
@@ -595,11 +638,42 @@ namespace LaneDataSimulator
             if (comboBox1.Items.Count == 0)
             {//没有作业 删除item不起作用
                 button6.Enabled = false;
+                textBoxQueueNodeInfo.Text = "";
+            }
+            else
+            {
+                button1.Enabled = true;
+
             }
 
+
+            SendEnable();
         }
 
+        private void SendEnable()
+        {
+            if (comboBox1.Items.Count == 0 || comboBox1.SelectedText == "")
+            {
+                Invoke(new MethodInvoker(() =>
+                {
+                    button1.Enabled = false;
+                }));
 
+            }
+            else
+            {
 
+                Invoke(new MethodInvoker(() =>
+                {
+                    button1.Enabled = true;
+                }));
+
+            }
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
