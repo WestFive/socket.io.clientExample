@@ -11,7 +11,7 @@ using MessageHub.Model.Pool;
 
 namespace MessageHub
 {
-    public class MessageHubClient:IDisposable
+    public class MessageHubClient : IDisposable
     {
         public string HubAddress { get; set; }
         #region HubReciveMessageCallBack
@@ -35,6 +35,11 @@ namespace MessageHub
         /// </summary>
         public delegate void HubError(string str);
         public event HubError reciveHubError;
+        #endregion
+
+        #region 接收点对点消息
+        public delegate void P2pMessage(string str);
+        public event P2pMessage reciveP2pMessage;
         #endregion
 
         public string laneCode;
@@ -73,9 +78,8 @@ namespace MessageHub
                 {
                     socket.Emit("authentication", (data1) =>
                     {
-
-
-                        reciveStatus?.Invoke(convertData(data1));
+                        Response res = JsonConvert.DeserializeObject<Response>(data1.ToString());
+                        reciveMessage.Invoke(res.message);
                     }, JsonConvert.SerializeObject(new ConnectionCreate(laneCode, laneCode)));
 
                 });
@@ -83,7 +87,7 @@ namespace MessageHub
                 socket.On(laneCode, (data) =>
                 {
                     
-                    reciveMessage?.Invoke(convertData(data));
+                    reciveP2pMessage?.Invoke(data.ToString());
                 });
 
                 socket.On(Socket.EVENT_ERROR, (data) =>
@@ -114,13 +118,14 @@ namespace MessageHub
                 socket.Emit("createMessage", (data) =>
                 {
                     Response res = JsonConvert.DeserializeObject<Response>(data.ToString());
-                    if(res.code!=200)
+                    if (res.code != 200)
                     {
-                        reciveStatus?.Invoke("推送消息发生错误");
+                        reciveHubError?.Invoke("推送消息发生错误");
                         reciveStatus?.Invoke("尝试创建池");
                         socket.Emit("createPool", JsonConvert.SerializeObject(new PoolCUR(messagecreate.poolName, "public", "updateTime", true, "", laneCode)));
                         AddMessage(messagecreate);
-                    }else
+                    }
+                    else
                     {
                         reciveStatus?.Invoke(res.message);
                     }
@@ -149,7 +154,8 @@ namespace MessageHub
                 string strobj = JsonConvert.SerializeObject(obj);
                 return strobj;
             }
-            return (string)obj; }
+            return (string)obj;
+        }
 
 
         public void deleteMessage(MessageD messageDel)
@@ -175,7 +181,8 @@ namespace MessageHub
             string url = apiAddress + "/p2pMessage";
             Console.WriteLine(message.receiver);
             dynamic str = WebApi.Post(url, JsonConvert.SerializeObject(message));
-            reciveStatus?.Invoke(convertData(str));
+            Response res = JsonConvert.DeserializeObject<Response>(str);
+            reciveMessage?.Invoke(res.message);
         }
 
 
@@ -183,7 +190,7 @@ namespace MessageHub
         public void Dispose()
         {
             socket.Close();
-            socket.Disconnect();            
+            socket.Disconnect();
         }
     }
 }

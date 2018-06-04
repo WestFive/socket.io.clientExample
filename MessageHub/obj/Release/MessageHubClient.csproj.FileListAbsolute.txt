@@ -15,4 +15,3 @@ D:\项目代码\工具类库_18_03_07\LaneDataSimulator\MessageHub\bin\Release\S
 D:\项目代码\工具类库_18_03_07\LaneDataSimulator\MessageHub\bin\Release\System.Collections.Immutable.xml
 D:\项目代码\工具类库_18_03_07\LaneDataSimulator\MessageHub\obj\Release\MessageHub.dll
 D:\项目代码\工具类库_18_03_07\LaneDataSimulator\MessageHub\obj\Release\MessageHub.pdb
-D:\项目代码\工具类库_18_03_07\LaneDataSimulator\MessageHub\obj\Release\MessageHubClient.csprojResolveAssemblyReference.cache

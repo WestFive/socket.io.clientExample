@@ -4,6 +4,7 @@ using MessageHub.Model;
 using MessageHub.util;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using PF_Log_Lib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -38,6 +39,8 @@ namespace LaneDataSimulator
 
 
         private MessageHubClient messagehubClient;
+
+        public static PF_Log_Class pf_log_class = new PF_Log_Class(Application.StartupPath+"/"+"SystemLog", 5, 2);
 
 
         /// <summary>
@@ -202,7 +205,7 @@ namespace LaneDataSimulator
 
 
                 }
-                addLog("更新成功,最新的" + counts.Last() + "值：" + value);
+                AppendLog("update", 9, "更新节点值" + counts.Last()+"成功");
                 UpdateMessageToMessageHub(MessageType.Lane);
                 reload(lane, treeLane);
             }
@@ -297,7 +300,7 @@ namespace LaneDataSimulator
 
 
                 }
-                addLog("更新成功,最新的" + counts.Last() + "值：" + value);
+                AppendLog("update", 9, "更新节点值" + counts.Last() + "成功");
                 UpdateMessageToMessageHub(MessageType.JobQueue);
                 reload(workingJobQueue, JobQueueTree);
 
@@ -332,15 +335,7 @@ namespace LaneDataSimulator
             }
         }
 
-        private void addLog(string str)
-        {
-            Invoke(new MethodInvoker(() =>
-            {
-                LogTextBox.AppendText(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ms") + "|" + str + "\r\n");
-            }));
 
-
-        }
 
         private void tabMain_Selected(object sender, TabControlEventArgs e)
         {
@@ -391,6 +386,7 @@ namespace LaneDataSimulator
                 messagehubClient.reciveMessage += MessagehubClient_reciveMessage;
                 messagehubClient.reciveStatus += MessagehubClient_reciveStatus;
                 messagehubClient.reciveHubError += MessagehubClient_reciveHubError;
+                messagehubClient.reciveP2pMessage += MessagehubClient_reciveP2pMessage;
                 messagehubClient.HubInit();
                 buttonConnectMessageHub.Text = "取消监听";
 
@@ -415,7 +411,7 @@ namespace LaneDataSimulator
                 messagehubClient = null;
                 textBoxLaneNodeInfo.Text = "";
                 textBoxQueueNodeInfo.Text = "";
-                LogTextBox.Clear();
+                richTextBox1.Clear();
                 comboBox1.Items.Clear();
                 comboBox1.Text = "";
                 buttonConnectMessageHub.Text = "注册监听";
@@ -424,63 +420,74 @@ namespace LaneDataSimulator
 
         }
 
-
-
-
-
-        private void MessagehubClient_reciveHubError(string str)
-        {
-            addLog("From Messagehub_reciveHubError|来自消息服务错误信息" + str);
-        }
-
-        private void MessagehubClient_reciveStatus(string str)
-        {
-            addLog("From Messagehub_reciveStatus|来自消息服务返回状态信息" + str);
-        }
-
-        private void MessagehubClient_reciveMessage(string str)
+        private void MessagehubClient_reciveP2pMessage(string str)
         {
             try
             {
                 str = str.Replace("\\", "");
                 str = str.Remove(0, 1);
                 str = str.Remove(str.Length - 1, 1);
-
-                string truestr = JsonConvert.SerializeObject(workingJobQueue);
-
-                string newstr = JsonConvert.SerializeObject(workingJobQueue);
-                JobQueue queue = JsonConvert.DeserializeObject<JobQueue>(str);
-
-                if (JobQueues.ContainsKey(queue.jobQueueCode))
+                            
+                if (str.Contains("commandCode"))
                 {
-                    workingJobQueue = queue;
-                    JobQueues[queue.jobQueueCode] = queue;
+                    Command com = JsonConvert.DeserializeObject<Command>(str);
 
-                    Invoke(new MethodInvoker(() =>
-                    {
-                        comboBox1.SelectedItem = queue.jobQueueCode;
-                        UpdateData(textJobQueuePoolName.Text, JsonConvert.SerializeObject(queue));
-                        addLog("接收到修改后的作业,已更新");
-                        reload(workingJobQueue, JobQueueTree);
-                    }));
-
-
-                    return;
+                    AppendLog("receiveP2pMessage", 3, "接收到command指令" + com.commandName);
                 }
                 else
                 {
-                    addLog("接收到不包含的作业数据，无效！");
+                    string truestr = JsonConvert.SerializeObject(workingJobQueue);
+
+                    string newstr = JsonConvert.SerializeObject(workingJobQueue);
+
+                    JobQueue queue = JsonConvert.DeserializeObject<JobQueue>(str);
+
+                    if (JobQueues.ContainsKey(queue.jobQueueCode))
+                    {
+                        workingJobQueue = queue;
+                        JobQueues[queue.jobQueueCode] = queue;
+
+                        Invoke(new MethodInvoker(() =>
+                        {
+                            comboBox1.SelectedItem = queue.jobQueueCode;
+                            UpdateData(textJobQueuePoolName.Text, JsonConvert.SerializeObject(queue));
+                            AppendLog("reciveP2pMessage", 3, "接收到修改后的作业,已更新");
+                            reload(workingJobQueue, JobQueueTree);
+                        }));
+
+
+                        return;
+                    }
+                    else
+                    {
+                        AppendLog("reciveP2pMessage", 3, "接收到未定义的P2P消息："+str);
+                    }
+
+
                 }
-
-
 
 
             }
             catch (Exception ex)
             {
-                addLog("接收到点对点数据" + str);
+                AppendLog("reciveP2pMessage", 3, "接收到点对点数据" + str);
             }
+        }
 
+        private void MessagehubClient_reciveHubError(string str)
+        {
+            AppendLog("reciveHubError", 2, str);
+        }
+
+        private void MessagehubClient_reciveStatus(string str)
+        {
+            AppendLog("reciveStatusReturn", 9, str);
+        }
+
+        private void MessagehubClient_reciveMessage(string str)
+        {
+            AppendLog("reciveMessage", 9, str);
+        
         }
 
         /// <summary>
@@ -570,7 +577,7 @@ namespace LaneDataSimulator
             {
                 button1.Enabled = true;
             }
-            if(button6.Enabled ==false)
+            if (button6.Enabled == false)
             {
                 button6.Enabled = true;
             }
@@ -672,5 +679,123 @@ namespace LaneDataSimulator
             }
         }
 
+
+        #region LogModule
+
+
+        private void AppendLog(string module_name, int log_type, string log)
+        {
+            try
+            {
+                Invoke(new MethodInvoker(() =>
+                {
+                    if (string.IsNullOrEmpty(log))
+                        return;
+                    string txt = string.Empty;
+                    string str_mod = "";
+                    string str_log_type = "";
+
+                    if (!string.IsNullOrEmpty(module_name))
+                    {
+                        str_mod = module_name + ":";
+                    }
+                    if (log_type >= 0 && log_type < 3)
+                    {
+                        str_log_type = _str_log_type[log_type] + ":";
+                    }
+
+                    txt = str_mod + str_log_type + log;
+
+                    if (richTextBox1.Lines.Length > 1000)
+                    {
+                        richTextBox1.Clear();
+                    }
+                    int Start = richTextBox1.SelectionStart;
+
+                    switch (log_type)
+                    {
+                        case 0:
+                            richTextBox1.SelectionColor = Color.Green;
+                            break;
+                        case 1:
+                            richTextBox1.SelectionColor = Color.Coral;
+                            break;
+                        case 2:
+                            richTextBox1.SelectionColor = Color.Red;
+                            break;
+                        case 3:
+                            richTextBox1.SelectionColor = Color.Blue;
+                            break;
+                        default:
+                            richTextBox1.SelectionColor = Color.Black;
+                            break;
+                    }
+                    richTextBox1.AppendText("[" + DateTime.Now.ToString("yyyy-MM-dd-HH:mm:ss") + "]:" + txt + "\r\n");
+
+                    if (Start < this.richTextBox1.TextLength)
+                    {
+                        this.richTextBox1.ScrollToCaret();
+                    }
+                    else
+                    {
+                        richTextBox1.SelectionStart = this.richTextBox1.TextLength;
+                        this.richTextBox1.ScrollToCaret();
+                    }
+
+
+                    sysLog sys_log;
+                    sys_log.type = 0;
+                    sys_log.log = "," + txt;
+                    pf_log_class.WriteLog(sys_log);
+                }));
+            }
+            catch (System.Exception ex)
+            {
+                string errorMes = GetExceptionMsg(ex, ex.ToString());
+                //Tools.AddLog(errorMes);
+                sysLog sys_log;
+                sys_log.type = 2;
+                sys_log.log = "," + errorMes;
+                pf_log_class.WriteLog(sys_log);
+            }
+        }
+
+        public void AddSystemLog(string log, int log_type = 0)
+        {
+            string module_name = _str_log_mod;
+            AppendLog(module_name, log_type, log);
+
+        }
+        public static string[] _str_log_type = { "normal", "warning", "err", "" };
+        public static string _str_log_mod = "sys";
+
+        public static string GetExceptionMsg(Exception ex, string backStr)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine("****************************异常文本****************************");
+            sb.AppendLine("【模块名称】：" + "主程序");
+            sb.AppendLine("【出现时间】：" + DateTime.Now.ToString());
+            if (ex != null)
+            {
+                sb.AppendLine("【异常类型】：" + ex.GetType().Name);
+                sb.AppendLine("【异常信息】：" + ex.Message);
+                sb.AppendLine("【堆栈调用】：" + ex.StackTrace);
+            }
+            else
+            {
+                sb.AppendLine("【未处理异常】：" + backStr);
+            }
+            sb.AppendLine("***************************************************************");
+            return sb.ToString();
+        }
+
+
+        #endregion
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Command com = JsonConvert.DeserializeObject<Command>(File.ReadAllText(Application.StartupPath + "/conf/command.json"));
+            messagehubClient.sendP2pMessge(new MessageHub.Model.Message.MessageP2p(textBoxLaneCode.Text, JsonConvert.SerializeObject(com)));
+        }
     }
 }

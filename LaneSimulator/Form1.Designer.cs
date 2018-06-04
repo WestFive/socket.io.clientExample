@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textJobQueuePoolName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textLanePoolName = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.textBoxlaneName = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.textBoxLaneCode = new System.Windows.Forms.TextBox();
@@ -53,11 +57,8 @@
             this.JobQueueTree = new System.Windows.Forms.TreeView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.LogTextBox = new System.Windows.Forms.TextBox();
-            this.textLanePoolName = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.textJobQueuePoolName = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabLane.SuspendLayout();
@@ -69,6 +70,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.textJobQueuePoolName);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.textLanePoolName);
@@ -87,6 +89,40 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1164, 104);
             this.panel1.TabIndex = 0;
+            // 
+            // textJobQueuePoolName
+            // 
+            this.textJobQueuePoolName.Location = new System.Drawing.Point(592, 66);
+            this.textJobQueuePoolName.Name = "textJobQueuePoolName";
+            this.textJobQueuePoolName.Size = new System.Drawing.Size(233, 21);
+            this.textJobQueuePoolName.TabIndex = 13;
+            this.textJobQueuePoolName.Text = "jobQueue";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(515, 71);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(65, 12);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "作业池名称";
+            // 
+            // textLanePoolName
+            // 
+            this.textLanePoolName.Location = new System.Drawing.Point(202, 68);
+            this.textLanePoolName.Name = "textLanePoolName";
+            this.textLanePoolName.Size = new System.Drawing.Size(233, 21);
+            this.textLanePoolName.TabIndex = 11;
+            this.textLanePoolName.Text = "lane";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(23, 71);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(65, 12);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "车道池名称";
             // 
             // textBoxlaneName
             // 
@@ -312,57 +348,30 @@
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.LogTextBox);
+            this.panel3.Controls.Add(this.richTextBox1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, -13);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1164, 143);
             this.panel3.TabIndex = 0;
             // 
-            // LogTextBox
+            // richTextBox1
             // 
-            this.LogTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.LogTextBox.ForeColor = System.Drawing.Color.Red;
-            this.LogTextBox.Location = new System.Drawing.Point(0, 17);
-            this.LogTextBox.Multiline = true;
-            this.LogTextBox.Name = "LogTextBox";
-            this.LogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.LogTextBox.Size = new System.Drawing.Size(1164, 126);
-            this.LogTextBox.TabIndex = 0;
+            this.richTextBox1.Location = new System.Drawing.Point(4, 17);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1148, 123);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
-            // textLanePoolName
+            // button2
             // 
-            this.textLanePoolName.Location = new System.Drawing.Point(202, 68);
-            this.textLanePoolName.Name = "textLanePoolName";
-            this.textLanePoolName.Size = new System.Drawing.Size(233, 21);
-            this.textLanePoolName.TabIndex = 11;
-            this.textLanePoolName.Text = "lane";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(23, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(65, 12);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "车道池名称";
-            // 
-            // textJobQueuePoolName
-            // 
-            this.textJobQueuePoolName.Location = new System.Drawing.Point(592, 66);
-            this.textJobQueuePoolName.Name = "textJobQueuePoolName";
-            this.textJobQueuePoolName.Size = new System.Drawing.Size(233, 21);
-            this.textJobQueuePoolName.TabIndex = 13;
-            this.textJobQueuePoolName.Text = "jobQueue";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(515, 71);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(65, 12);
-            this.label6.TabIndex = 12;
-            this.label6.Text = "作业池名称";
+            this.button2.Location = new System.Drawing.Point(1017, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 75);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "测试指令";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 
@@ -386,7 +395,6 @@
             this.JobQueueControllerPanel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -402,7 +410,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.TreeView treeLane;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.TextBox LogTextBox;
         private System.Windows.Forms.TreeView JobQueueTree;
         private System.Windows.Forms.Panel JobQueueControllerPanel;
         private System.Windows.Forms.Label label1;
@@ -425,6 +432,8 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textJobQueuePoolName;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Button button2;
     }
 }
 
