@@ -1,4 +1,5 @@
-﻿using LaneDataSimulator.util;
+﻿using CommandExecutor;
+using LaneDataSimulator.util;
 using MessageHub;
 using MessageHub.Model;
 using MessageHub.util;
@@ -29,19 +30,13 @@ namespace LaneDataSimulator
 
         public NodeUtil nodeUtil = new NodeUtil();
         public JsonUtil jsonUtil = new JsonUtil();
-
         public Dictionary<string, dynamic> JobQueues = new Dictionary<string, dynamic>();
-
         private dynamic lane; //当前车道数据  类型为Lane声明为 dynamic
-
         private dynamic workingJobQueue;//当前作业类型为JobQueue声明为dynamic
-
-
-
         private MessageHubClient messagehubClient;
+        public static PF_Log_Class pf_log_class = new PF_Log_Class(Application.StartupPath + "/" + "SystemLog", 5, 2);
 
-        public static PF_Log_Class pf_log_class = new PF_Log_Class(Application.StartupPath+"/"+"SystemLog", 5, 2);
-
+        public CommandExecutor.CommandExecutor commandExecutor = new CommandExecutor.CommandExecutor();//指令处理器
 
         /// <summary>
         /// 重新加载左侧节点树
@@ -205,7 +200,7 @@ namespace LaneDataSimulator
 
 
                 }
-                AppendLog("update", 9, "更新节点值" + counts.Last()+"成功");
+                AppendLog("update", 9, "更新节点值" + counts.Last() + "成功");
                 UpdateMessageToMessageHub(MessageType.Lane);
                 reload(lane, treeLane);
             }
@@ -363,7 +358,9 @@ namespace LaneDataSimulator
                     textBoxlaneName.Text = lane.laneName;
 
                 }
-                reload(lane, treeLane); //默认加载lane
+                //((Lane)lane).laneStatus = false;
+                updateLane(lane);
+                //reload(lane, treeLane); //默认加载lane
                 reloadUI();//重载UI
 
 
@@ -387,6 +384,7 @@ namespace LaneDataSimulator
                 messagehubClient.reciveStatus += MessagehubClient_reciveStatus;
                 messagehubClient.reciveHubError += MessagehubClient_reciveHubError;
                 messagehubClient.reciveP2pMessage += MessagehubClient_reciveP2pMessage;
+                commandExecutor.commandExecutorResult += CommandExecutor_commandExecutorResult;//指令处理器回调
                 messagehubClient.HubInit();
                 buttonConnectMessageHub.Text = "取消监听";
 
@@ -420,6 +418,7 @@ namespace LaneDataSimulator
 
         }
 
+
         private void MessagehubClient_reciveP2pMessage(string str)
         {
             try
@@ -427,12 +426,16 @@ namespace LaneDataSimulator
                 str = str.Replace("\\", "");
                 str = str.Remove(0, 1);
                 str = str.Remove(str.Length - 1, 1);
-                            
+
                 if (str.Contains("commandCode"))
                 {
                     Command com = JsonConvert.DeserializeObject<Command>(str);
 
-                    AppendLog("receiveP2pMessage", 3, "接收到command指令" + com.commandName);
+                    //AppendLog("receiveP2pMessage", 3, "接收到command指令" + com.commandName);
+                    commandExecutor.resolveCommand(com, workingJobQueue, lane);//通知指令处理器处理指令
+
+
+
                 }
                 else
                 {
@@ -442,37 +445,47 @@ namespace LaneDataSimulator
 
                     JobQueue queue = JsonConvert.DeserializeObject<JobQueue>(str);
 
-                    if (JobQueues.ContainsKey(queue.jobQueueCode))
-                    {
-                        workingJobQueue = queue;
-                        JobQueues[queue.jobQueueCode] = queue;
-
-                        Invoke(new MethodInvoker(() =>
-                        {
-                            comboBox1.SelectedItem = queue.jobQueueCode;
-                            UpdateData(textJobQueuePoolName.Text, JsonConvert.SerializeObject(queue));
-                            AppendLog("reciveP2pMessage", 3, "接收到修改后的作业,已更新");
-                            reload(workingJobQueue, JobQueueTree);
-                        }));
-
-
-                        return;
-                    }
-                    else
-                    {
-                        AppendLog("reciveP2pMessage", 3, "接收到未定义的P2P消息："+str);
-                    }
-
-
+                    updateJobQueue(queue);
                 }
-
-
             }
             catch (Exception ex)
             {
                 AppendLog("reciveP2pMessage", 3, "接收到点对点数据" + str);
             }
         }
+
+        private void updateJobQueue(JobQueue queue)
+        {
+            if (JobQueues.ContainsKey(queue.jobQueueCode))
+            {
+                workingJobQueue = queue;
+                JobQueues[queue.jobQueueCode] = queue;
+
+                Invoke(new MethodInvoker(() =>
+                {
+                    comboBox1.SelectedItem = queue.jobQueueCode;
+                    UpdateData(textJobQueuePoolName.Text, JsonConvert.SerializeObject(queue));
+                    AppendLog("reciveJobQueue", 3, "接收到修改后的作业,已更新");
+                    reload(workingJobQueue, JobQueueTree);
+                }));
+
+            }
+        }
+
+        private void updateLane(Lane ulane)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+
+
+                lane = ulane;
+                UpdateData(textLanePoolName.Text, JsonConvert.SerializeObject(lane));
+                reload(lane, treeLane);
+            }));
+
+        }
+
+
 
         private void MessagehubClient_reciveHubError(string str)
         {
@@ -487,7 +500,7 @@ namespace LaneDataSimulator
         private void MessagehubClient_reciveMessage(string str)
         {
             AppendLog("reciveMessage", 9, str);
-        
+
         }
 
         /// <summary>
@@ -797,5 +810,27 @@ namespace LaneDataSimulator
             Command com = JsonConvert.DeserializeObject<Command>(File.ReadAllText(Application.StartupPath + "/conf/command.json"));
             messagehubClient.sendP2pMessge(new MessageHub.Model.Message.MessageP2p(textBoxLaneCode.Text, JsonConvert.SerializeObject(com)));
         }
+
+
+        #region 指令处理
+
+        private void CommandExecutor_commandExecutorResult(object obj)
+        {
+            switch (obj.GetType().FullName)
+            {
+                case "MessageHub.Model.Command":
+                    AppendLog("commandResult", 3, ((Command)obj).commandName);
+                    break;
+                case "TempLate.JobQueue":
+                    updateJobQueue((JobQueue)obj);
+                    break;
+                case "TempLate.Lane":
+                    updateLane((Lane)obj);
+                    break;
+            }
+            //AppendLog("CommandExecutorResult", 9, c.commandName);
+        }
+
+        #endregion
     }
 }

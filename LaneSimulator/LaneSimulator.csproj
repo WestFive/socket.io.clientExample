@@ -123,6 +123,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CommandExecutor\CommandExecutor.csproj">
+      <Project>{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}</Project>
+      <Name>CommandExecutor</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MessageHub\MessageHubClient.csproj">
       <Project>{D7FC368C-8ADE-4B1C-94C3-53F33F0144DD}</Project>
       <Name>MessageHubClient</Name>

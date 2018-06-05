@@ -93,8 +93,8 @@ namespace MessageHub.util
                     case PostType.Body:
                         request.AddHeader("Content-Type", "application/json");
                         request.AddHeader("charset", "UTF-8");
-                        request.AddQueryParameter("message", parms);
-                        //request.AddBody(parms);
+                        //request.AddQueryParameter("message", parms);
+                        request.AddBody(parms);
                         break;
                     case PostType.Parms:
                         dic = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(parms);

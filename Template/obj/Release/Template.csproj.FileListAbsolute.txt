@@ -5,3 +5,9 @@ D:\项目代码\工具类库_18_03_07\LaneDataSimulator\Template\bin\Release\New
 D:\项目代码\工具类库_18_03_07\LaneDataSimulator\Template\obj\Release\Template.csprojResolveAssemblyReference.cache
 D:\项目代码\工具类库_18_03_07\LaneDataSimulator\Template\obj\Release\Data.dll
 D:\项目代码\工具类库_18_03_07\LaneDataSimulator\Template\obj\Release\Data.pdb
+D:\项目代码\云闸口V2\LaneDataSimulator\Template\bin\Release\Data.dll
+D:\项目代码\云闸口V2\LaneDataSimulator\Template\bin\Release\Data.pdb
+D:\项目代码\云闸口V2\LaneDataSimulator\Template\bin\Release\Newtonsoft.Json.dll
+D:\项目代码\云闸口V2\LaneDataSimulator\Template\bin\Release\Newtonsoft.Json.xml
+D:\项目代码\云闸口V2\LaneDataSimulator\Template\obj\Release\Data.dll
+D:\项目代码\云闸口V2\LaneDataSimulator\Template\obj\Release\Data.pdb
