@@ -31,6 +31,5 @@ D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\bin\Debug\Newtonsoft.Js
 D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\bin\Debug\RestSharp.xml
 D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\bin\Debug\StackExchange.Redis.xml
 D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\bin\Debug\System.Collections.Immutable.xml
-D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\obj\Debug\MessageHubClient.csprojResolveAssemblyReference.cache
 D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\obj\Debug\MessageHub.dll
 D:\项目代码\云闸口V2\LaneDataSimulator\MessageHub\obj\Debug\MessageHub.pdb

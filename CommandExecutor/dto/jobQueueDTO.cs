@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TempLate;
 
 namespace ReleaseRuleExecutor.dto
 {
     public class jobQueueDTO
     {
-        public string id { get; set; }
+        public long? id { get; set; }
 
         public string jobQueueCode { get; set; }
 
@@ -51,11 +52,11 @@ namespace ReleaseRuleExecutor.dto
 
         public string customsLockNumber { get; set; }
 
-        public float totalWeight { get; set; }
+        public float? totalWeight { get; set; }
 
-        public int containerQuantity { get; set; }
+        public int? containerQuantity { get; set; }
 
-        public string releaseResult;
+        public string releaseResult { get; set; }
 
         // 获取ReleaseRuleResult数组
         public List<ReleaseRuleResultDTO> releaseRuleResults { get; set; }
@@ -69,13 +70,13 @@ namespace ReleaseRuleExecutor.dto
         public string releasedTime { get; set; }
 
 
-        public string pictures { get; set; }
+        public object pictures { get; set; }
 
 
-        public string processes { get; set; }
+        public object processes { get; set; }
 
 
-        public string extras { get; set; }
+        public object extras { get; set; }
 
 
         public string createdBy { get; set; }
@@ -94,42 +95,29 @@ namespace ReleaseRuleExecutor.dto
 
     public class ReleaseRuleResultDTO
     {
-        public string id { get; set; }
+        public long? id { get; set; }
 
+        public int? sequence { get; set; }
+
+   
         public string releaseRuleName { get; set; }
 
-        public string description { get; set; }
+        public object releaseRuleStatus { get; set; }
 
-        public string priority { get; set; }
+    
+        public string releaseResultMessage { get; set; }
 
-        public bool isEnabled { get; set; }
+        public string updateTime { get; set; }
 
-        public string onPermit { get; set; }
+        public long? jobQueueId { get; set; }
 
-        public string onDeny { get; set; }
-
-        public string onPending { get; set; }
-
-        public string releaseRuleClass { get; set; }
-
-        public string releaseRuleMethod { get; set; }
-
-        public string releaseRuleParameters { get; set; }
-
-        public string createdBy { get; set; }
-
-        public string createdTime { get; set; }
-
-
-        public string lastModifiedBy { get; set; }
-
-        public string lastModifiedTime { get; set; }
+        public string jobQueueCode { get; set;}
 
     }
 
     public class ContainerDTO
     {
-        public string id { get; set; }
+        public long? id { get; set; }
 
         public string containerNumber { get; set; }
 
@@ -141,7 +129,7 @@ namespace ReleaseRuleExecutor.dto
         public bool isOcrContainerNumberSucceeded { get; set; }
 
 
-        public string damages { get; set; }
+        public object damages {get;set;}
 
 
         public string sealNumber { get; set; }
@@ -156,7 +144,7 @@ namespace ReleaseRuleExecutor.dto
 
         public string lastModifiedTime { get; set; }
 
-        public string jobQueueId { get; set; }
+        public long? jobQueueId { get; set; }
 
         public string jobQueueCode { get; set; }
 

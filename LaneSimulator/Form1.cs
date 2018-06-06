@@ -429,22 +429,14 @@ namespace LaneDataSimulator
 
                 if (str.Contains("commandCode"))
                 {
-                    Command com = JsonConvert.DeserializeObject<Command>(str);
-
-                    //AppendLog("receiveP2pMessage", 3, "接收到command指令" + com.commandName);
+                    Command com = JsonConvert.DeserializeObject<Command>(str);                    
                     commandExecutor.resolveCommand(com, workingJobQueue, lane);//通知指令处理器处理指令
-
-
-
                 }
                 else
                 {
                     string truestr = JsonConvert.SerializeObject(workingJobQueue);
-
                     string newstr = JsonConvert.SerializeObject(workingJobQueue);
-
                     JobQueue queue = JsonConvert.DeserializeObject<JobQueue>(str);
-
                     updateJobQueue(queue);
                 }
             }
@@ -465,7 +457,7 @@ namespace LaneDataSimulator
                 {
                     comboBox1.SelectedItem = queue.jobQueueCode;
                     UpdateData(textJobQueuePoolName.Text, JsonConvert.SerializeObject(queue));
-                    AppendLog("reciveJobQueue", 3, "接收到修改后的作业,已更新");
+                    AppendLog("reciveJobQueue", 3, "作业发生修改,已更新");
                     reload(workingJobQueue, JobQueueTree);
                 }));
 

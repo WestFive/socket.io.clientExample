@@ -38,9 +38,9 @@ namespace TempLate
 
         public string customsLockNumber { get; set; }
 
-        public string totalWeight { get; set; }
+        public int? totalWeight { get; set; }
 
-        public int containerQuantity { get; set; }
+        public int? containerQuantity { get; set; }
 
         public bool isEditable { get; set; }
 
@@ -64,11 +64,10 @@ namespace TempLate
 
         public List<ReleaseRuleResult> releaseRuleResults { get; set; }
 
-        public Extras extras { get; set; }
+        public object extras { get; set; }
 
     }
-
-    public class Extras { }
+    
 
 
     public class Container
@@ -90,9 +89,9 @@ namespace TempLate
 
     public class ReleaseRuleResult
     {
-        public string id { get; set; }
+        public long? id { get; set; }
 
-        public string sequence { get; set; }
+        public int? sequence { get; set; }
 
         public string releaseRuleName { get; set; }
 
@@ -100,9 +99,9 @@ namespace TempLate
 
         public string releaseResultMessage { get; set; }
 
-        public string updateTime { get; set; }
+        public string updateTime = "2018-04-30T16:00:00Z";
 
-        public string jobQueueId { get; set; }
+        public long? jobQueueId { get; set; }
 
         public string jobQueueCode { get; set; }
     }
