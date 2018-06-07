@@ -85,12 +85,25 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Executor\CommandExecutor.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mapper\JobQueueMapper.cs" />
+    <Compile Include="Model\Domain\Command.cs" />
+    <Compile Include="Model\Domain\Damage.cs" />
+    <Compile Include="Model\Dto\ContainerDTO.cs" />
+    <Compile Include="Model\Dto\JobQueueDTO.cs" />
+    <Compile Include="Model\Domain\Container.cs" />
+    <Compile Include="Model\Domain\Device.cs" />
+    <Compile Include="Model\Domain\JobQueue.cs" />
+    <Compile Include="Model\Domain\Lane.cs" />
+    <Compile Include="Model\Domain\Picture.cs" />
+    <Compile Include="Model\Domain\Process.cs" />
+    <Compile Include="Model\Dto\ReleaseRuleResultDTO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="util\JsonUtil.cs" />
@@ -123,17 +136,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CommandExecutor\CommandExecutor.csproj">
-      <Project>{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}</Project>
-      <Name>CommandExecutor</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MessageHub\MessageHubClient.csproj">
       <Project>{D7FC368C-8ADE-4B1C-94C3-53F33F0144DD}</Project>
       <Name>MessageHubClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Template\Template.csproj">
-      <Project>{0633BC59-49F8-4355-B5C1-544E930A52F7}</Project>
-      <Name>Template</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,11 +1,11 @@
-﻿using System;
+﻿using LaneSimulator.Model.Dto;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TempLate;
 
-namespace ReleaseRuleExecutor.dto
+namespace LaneSimulator.Model.Domain.Dto
 {
     public class jobQueueDTO
     {
@@ -70,13 +70,13 @@ namespace ReleaseRuleExecutor.dto
         public string releasedTime { get; set; }
 
 
-        public object pictures { get; set; }
+        public string pictures { get; set; }
 
 
-        public object processes { get; set; }
+        public string processes { get; set; }
 
 
-        public object extras { get; set; }
+        public string extras { get; set; }
 
 
         public string createdBy { get; set; }
@@ -91,62 +91,5 @@ namespace ReleaseRuleExecutor.dto
         // 获取Container数组
         public List<ContainerDTO> containers { get; set; }
 
-    }
-
-    public class ReleaseRuleResultDTO
-    {
-        public long? id { get; set; }
-
-        public int? sequence { get; set; }
-
-   
-        public string releaseRuleName { get; set; }
-
-        public object releaseRuleStatus { get; set; }
-
-    
-        public string releaseResultMessage { get; set; }
-
-        public string updateTime { get; set; }
-
-        public long? jobQueueId { get; set; }
-
-        public string jobQueueCode { get; set;}
-
-    }
-
-    public class ContainerDTO
-    {
-        public long? id { get; set; }
-
-        public string containerNumber { get; set; }
-
-        public string ocrContainerNumber { get; set; }
-
-
-        public string ocrIsoCode { get; set; }
-
-        public bool isOcrContainerNumberSucceeded { get; set; }
-
-
-        public object damages {get;set;}
-
-
-        public string sealNumber { get; set; }
-
-
-        public string createdBy { get; set; }
-
-        public string createdTime { get; set; }
-
-
-        public string lastModifiedBy { get; set; }
-
-        public string lastModifiedTime { get; set; }
-
-        public long? jobQueueId { get; set; }
-
-        public string jobQueueCode { get; set; }
-
-    }
+    }    
 }

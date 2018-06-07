@@ -1,5 +1,8 @@
-﻿using CommandExecutor;
-using LaneDataSimulator.util;
+﻿using LaneDataSimulator.util;
+using LaneSimulator.Executor;
+using LaneSimulator.Model.Domain;
+using LaneSimulator.Model.Dto;
+using LaneSimulator.Model.Msg;
 using MessageHub;
 using MessageHub.Model;
 using MessageHub.util;
@@ -17,7 +20,6 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TempLate;
 
 namespace LaneDataSimulator
 {
@@ -36,7 +38,7 @@ namespace LaneDataSimulator
         private MessageHubClient messagehubClient;
         public static PF_Log_Class pf_log_class = new PF_Log_Class(Application.StartupPath + "/" + "SystemLog", 5, 2);
 
-        public CommandExecutor.CommandExecutor commandExecutor = new CommandExecutor.CommandExecutor();//指令处理器
+        public CommandExecutor commandExecutor = new CommandExecutor();//指令处理器
 
         /// <summary>
         /// 重新加载左侧节点树
@@ -218,10 +220,10 @@ namespace LaneDataSimulator
                                 workingJobQueue.pictures = JsonConvert.DeserializeObject<Picture>(value);
                                 break;
                             case "releaseRuleResults":
-                                workingJobQueue.releaseRuleResults = JsonConvert.DeserializeObject<List<ReleaseRuleResult>>(value);
+                                workingJobQueue.releaseRuleResults = JsonConvert.DeserializeObject<List<ReleaseRuleResultDTO>>(value);
                                 break;
                             case "containers":
-                                workingJobQueue.containers = JsonConvert.DeserializeObject<List<TempLate.Container>>(value);
+                                workingJobQueue.containers = JsonConvert.DeserializeObject<List<LaneSimulator.Model.Domain.Container>>(value);
                                 break;
                             case "processes":
                                 workingJobQueue.processes = JsonConvert.DeserializeObject<List<Process>>(value);
@@ -239,13 +241,13 @@ namespace LaneDataSimulator
                         switch (counts[1])
                         {
                             case "containers":
-                                workingJobQueue.containers[index] = JsonConvert.DeserializeObject<TempLate.Container>(value);
+                                workingJobQueue.containers[index] = JsonConvert.DeserializeObject<LaneSimulator.Model.Domain.Container>(value);
                                 break;
                             case "processes":
                                 workingJobQueue.processes[index] = JsonConvert.DeserializeObject<Process>(value);
                                 break;
                             case "releaseRuleResults":
-                                workingJobQueue.releaseRuleResults[index] = JsonConvert.DeserializeObject<ReleaseRuleResult>(value);
+                                workingJobQueue.releaseRuleResults[index] = JsonConvert.DeserializeObject<ReleaseRuleResultDTO>(value);
                                 break;
 
 
@@ -258,7 +260,7 @@ namespace LaneDataSimulator
                                 int cindex = Convert.ToInt32(counts[2]);
                                 Dictionary<string, dynamic> cdic = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(JsonConvert.SerializeObject(workingJobQueue.containers[cindex]));
                                 cdic[counts.Last()] = value.Replace("\"", "");
-                                dynamic object4 = JsonConvert.DeserializeObject<TempLate.Container>(JsonConvert.SerializeObject(cdic));
+                                dynamic object4 = JsonConvert.DeserializeObject<LaneSimulator.Model.Domain.Container>(JsonConvert.SerializeObject(cdic));
                                 workingJobQueue.containers[cindex] = object4;
                                 break;
                             case "processes":
@@ -272,7 +274,7 @@ namespace LaneDataSimulator
                                 int rindex = Convert.ToInt32(counts[2]);
                                 Dictionary<string, dynamic> dic5 = JsonConvert.DeserializeObject<Dictionary<string, dynamic>>(JsonConvert.SerializeObject(workingJobQueue.releaseRuleResults[rindex]));
                                 dic5[counts.Last()] = value.Replace("\"", "");
-                                dynamic object6 = JsonConvert.DeserializeObject<ReleaseRuleResult>(JsonConvert.SerializeObject(dic5));
+                                dynamic object6 = JsonConvert.DeserializeObject<ReleaseRuleResultDTO>(JsonConvert.SerializeObject(dic5));
                                 workingJobQueue.releaseRuleResults[rindex] = object6;
                                 break;
 
@@ -429,7 +431,7 @@ namespace LaneDataSimulator
 
                 if (str.Contains("commandCode"))
                 {
-                    Command com = JsonConvert.DeserializeObject<Command>(str);                    
+                    LaneSimulator.Model.Domain.Command com = JsonConvert.DeserializeObject<LaneSimulator.Model.Domain.Command>(str);                    
                     commandExecutor.resolveCommand(com, workingJobQueue, lane);//通知指令处理器处理指令
                 }
                 else
@@ -799,7 +801,7 @@ namespace LaneDataSimulator
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Command com = JsonConvert.DeserializeObject<Command>(File.ReadAllText(Application.StartupPath + "/conf/command.json"));
+            LaneSimulator.Model.Domain.Command com = JsonConvert.DeserializeObject<LaneSimulator.Model.Domain.Command>(File.ReadAllText(Application.StartupPath + "/conf/command.json"));
             messagehubClient.sendP2pMessge(new MessageHub.Model.Message.MessageP2p(textBoxLaneCode.Text, JsonConvert.SerializeObject(com)));
         }
 
@@ -810,13 +812,13 @@ namespace LaneDataSimulator
         {
             switch (obj.GetType().FullName)
             {
-                case "MessageHub.Model.Command":
-                    AppendLog("commandResult", 3, ((Command)obj).commandName);
+                case "LaneSimulator.Model.Domain.Command":
+                    AppendLog("commandResult", 3, ((LaneSimulator.Model.Domain.Command)obj).commandName);
                     break;
-                case "TempLate.JobQueue":
+                case "LaneSimulator.Model.Domain.JobQueue":
                     updateJobQueue((JobQueue)obj);
                     break;
-                case "TempLate.Lane":
+                case "LaneSimulator.Model.Domain.Lane":
                     updateLane((Lane)obj);
                     break;
             }

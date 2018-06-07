@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="JobQueue.cs" />
+    <Compile Include="Properties\JobQueue.cs" />
     <Compile Include="Lane.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

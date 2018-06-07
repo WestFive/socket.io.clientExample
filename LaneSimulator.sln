@@ -7,10 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageHubClient", "Message
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaneSimulator", "LaneSimulator\LaneSimulator.csproj", "{E7F58F14-381B-43D7-8BDE-490DB87D98BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template", "Template\Template.csproj", "{0633BC59-49F8-4355-B5C1-544E930A52F7}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommandExecutor", "CommandExecutor\CommandExecutor.csproj", "{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,14 +21,6 @@ Global
 		{E7F58F14-381B-43D7-8BDE-490DB87D98BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E7F58F14-381B-43D7-8BDE-490DB87D98BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E7F58F14-381B-43D7-8BDE-490DB87D98BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0633BC59-49F8-4355-B5C1-544E930A52F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0633BC59-49F8-4355-B5C1-544E930A52F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0633BC59-49F8-4355-B5C1-544E930A52F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0633BC59-49F8-4355-B5C1-544E930A52F7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{790B3AEB-1A6D-42B2-A74F-84E7BC75627F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

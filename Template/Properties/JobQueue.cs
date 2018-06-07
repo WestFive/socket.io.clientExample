@@ -38,7 +38,7 @@ namespace TempLate
 
         public string customsLockNumber { get; set; }
 
-        public int? totalWeight { get; set; }
+        public float? totalWeight { get; set; }
 
         public int? containerQuantity { get; set; }
 
@@ -65,6 +65,11 @@ namespace TempLate
         public List<ReleaseRuleResult> releaseRuleResults { get; set; }
 
         public object extras { get; set; }
+
+
+
+
+        
 
     }
     

@@ -1,4 +1,7 @@
-﻿using MessageHub.Model;
+﻿using LaneSimulator.Mapper;
+using LaneSimulator.Model.Domain;
+using LaneSimulator.Model.Domain.Dto;
+using MessageHub.Model;
 using MessageHub.util;
 using Newtonsoft.Json;
 using System;
@@ -8,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace CommandExecutor
+namespace LaneSimulator.Executor
 {
 
 
@@ -22,13 +25,14 @@ namespace CommandExecutor
         public event commandExecutor commandExecutorResult;
 
 
+        public JobQueueMapper jobqueueMapper = new JobQueueMapper();
         /// <summary>
         /// 指令解析
         /// </summary>
         /// <param name="command"></param>
         /// <param name="workingQueue"></param>
         /// <param name="lane"></param>
-        public void resolveCommand(Command command, JobQueue workingQueue, Lane lane)
+        public void resolveCommand(Model.Domain.Command command, JobQueue workingQueue, Lane lane)
         {
 
             switch (command.commandName)
@@ -62,13 +66,15 @@ namespace CommandExecutor
                 case "requestReleaseRuleExecutor":
                     command.commandName = "收到请求放行规则指令";
                     commandExecutorResult?.Invoke(command);// 回调给主窗体打印日志
-                    jobQueueDTO jobqueuedto = JsonConvert.DeserializeObject<jobQueueDTO>(File.ReadAllText(Application.StartupPath + "/conf/jobQueueDTO.json"));//读取默认jobQueueDTO
-                    jobqueuedto = setJobQueueDTO(workingQueue, jobqueuedto);//将当前workingQueue的                    
+                    //jobQueueDTO jobqueuedto = JsonConvert.DeserializeObject<jobQueueDTO>(File.ReadAllText(Application.StartupPath + "/conf/jobQueueDTO.json"));//读取默认jobQueueDTO
+                    //jobqueuedto = setJobQueueDTO(workingQueue, jobqueuedto);//将当前workingQueue的                    
+
+                    jobQueueDTO jobqueueDto = jobqueueMapper.toDto(workingQueue);
                     command.commandName = "解析jobQueudto完成,准备调用API";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
-                    string result = WebApi.Post("http://10.1.1.114:8081/api/release-rule-executor", JsonConvert.SerializeObject(jobqueuedto));//请求规则执行器API
-                    jobQueueDTO jqdto = JsonConvert.DeserializeObject<jobQueueDTO>(result);//获取返回jobQueueDTO结果
-                    setQueue(jqdto, workingQueue);//赋值给当前workingQueue
+                    string result = WebApi.Post("http://10.1.1.114:8081/api/release-rule-executor", JsonConvert.SerializeObject(jobqueueDto));//请求规则执行器API
+                    jobQueueDTO  apiResultDto = JsonConvert.DeserializeObject<jobQueueDTO>(result);//获取返回jobQueueDTO结果
+                    workingQueue = jobqueueMapper.toEntity(apiResultDto);
                     command.commandName = "接收结果并赋值完成";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
                     commandExecutorResult?.Invoke(workingQueue);//回调给主窗体更新workingQueue推送
@@ -87,8 +93,8 @@ namespace CommandExecutor
 
         //private jobQueueDTO setJobQueueDTO(JobQueue workingQueue, jobQueueDTO jobQueueDTO)
         //{
-            
-                  
+
+
         //    jobQueueDTO.laneCode = workingQueue.laneCode;
         //    jobQueueDTO.jobQueueCode = workingQueue.jobQueueCode;
         //    jobQueueDTO.laneName = workingQueue.laneName;

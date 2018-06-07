@@ -48,17 +48,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandExecutor.cs" />
-    <Compile Include="dto\jobQueueDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MessageHub\MessageHubClient.csproj">
       <Project>{d7fc368c-8ade-4b1c-94c3-53f33f0144dd}</Project>
       <Name>MessageHubClient</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Template\Template.csproj">
-      <Project>{0633BC59-49F8-4355-B5C1-544E930A52F7}</Project>
-      <Name>Template</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

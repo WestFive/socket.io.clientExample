@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using LaneSimulator.Model.Domain;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TempLate;
 
 namespace LaneDataSimulator.util
 {
