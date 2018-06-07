@@ -73,17 +73,30 @@ namespace LaneSimulator.Executor
                     command.commandName = "解析jobQueudto完成,准备调用API";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
                     string result = WebApi.Post("http://10.1.1.114:8081/api/release-rule-executor", JsonConvert.SerializeObject(jobqueueDto));//请求规则执行器API
-                    jobQueueDTO  apiResultDto = JsonConvert.DeserializeObject<jobQueueDTO>(result);//获取返回jobQueueDTO结果
-                    workingQueue = jobqueueMapper.toEntity(apiResultDto);
+                    jobQueueDTO apiResultDto = JsonConvert.DeserializeObject<jobQueueDTO>(result);//获取返回jobQueueDTO结果
+                    workingQueue = jobqueueMapper.toEntity(apiResultDto, workingQueue);
                     command.commandName = "接收结果并赋值完成";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
                     commandExecutorResult?.Invoke(workingQueue);//回调给主窗体更新workingQueue推送
                     break;
-                case "test":
-                    jobQueueDTO jobqueuedtoTest = JsonConvert.DeserializeObject<jobQueueDTO>(File.ReadAllText(Application.StartupPath + "/conf/jobQueueDTO.json"));//读取默认jobQueueDTO
-                    JobQueue jobqueueTest = JsonConvert.DeserializeObject<JobQueue>(JsonConvert.SerializeObject(jobqueuedtoTest));
+                //case "test":
+                //    jobQueueDTO jobqueuedtoTest = JsonConvert.DeserializeObject<jobQueueDTO>(File.ReadAllText(Application.StartupPath + "/conf/jobQueueDTO.json"));//读取默认jobQueueDTO
+                //    JobQueue jobqueueTest = JsonConvert.DeserializeObject<JobQueue>(JsonConvert.SerializeObject(jobqueuedtoTest));
 
-                    jobQueueDTO jobqueuedtoTest1 = JsonConvert.DeserializeObject<jobQueueDTO>(JsonConvert.SerializeObject(workingQueue));
+                //    jobQueueDTO jobqueuedtoTest1 = JsonConvert.DeserializeObject<jobQueueDTO>(JsonConvert.SerializeObject(workingQueue));
+                //    break;
+                case "manualRelease":
+                    dynamic commandParam = JsonConvert.DeserializeObject<Dictionary<string,string>>(command.parameter.ToString());
+                    workingQueue.releaseResult = commandParam["releaseResult"];
+                    workingQueue.releasedType = commandParam["releasedType"];
+                    workingQueue.releasedBy = commandParam["releasedBy"];
+                    workingQueue.releasedTime = commandParam["releasedTime"];
+                    jobQueueDTO saveDbJobQueueDto = jobqueueMapper.toDto(workingQueue);
+                    //将jobQueueDTO进行持久化
+                    WebApi.Post("http://10.1.1.114:8081/api/job-queues", JsonConvert.SerializeObject(saveDbJobQueueDto),"PUT");//请求规则执行器API
+                    command.commandName = "持久化数据完成";
+                    commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
+                    commandExecutorResult?.Invoke(workingQueue);//回调给主窗体更新workingQueue推送
                     break;
                 default:
                     commandExecutorResult?.Invoke(command);

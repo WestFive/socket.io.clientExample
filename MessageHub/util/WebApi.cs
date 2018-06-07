@@ -117,12 +117,12 @@ namespace MessageHub.util
 
 
 
-        public static string Post(string url, string param)
+        public static string Post(string url, string param,string method="POST")
         {
             string strURL = url;
             System.Net.HttpWebRequest request;
             request = (System.Net.HttpWebRequest)WebRequest.Create(strURL);
-            request.Method = "POST";
+            request.Method = method;
             request.ContentType = "application/json";
             string paraUrlCoded = param;
             byte[] payload;

@@ -76,9 +76,8 @@ namespace LaneSimulator.Mapper
 
 
 
-        public JobQueue toEntity(jobQueueDTO jobqueueDto)
-        {
-            JobQueue jobQueue = new JobQueue();
+        public JobQueue toEntity(jobQueueDTO jobqueueDto,JobQueue jobQueue)
+        {            
             jobQueue.jobQueueCode = jobqueueDto.jobQueueCode;
             jobQueue.businessType = jobqueueDto.businessType;
             jobQueue.laneCode = jobqueueDto.laneCode;
@@ -97,8 +96,8 @@ namespace LaneSimulator.Mapper
             jobQueue.totalWeight = jobqueueDto.totalWeight;
             jobQueue.containerQuantity = jobqueueDto.containerQuantity;
             jobQueue.isEditable = true;
-            jobQueue.isLocked = false;
-            jobQueue.lockedBy = jobqueueDto.createdBy;
+            //jobQueue.isLocked = false;
+            //jobQueue.lockedBy = jobqueueDto.createdBy;
             jobQueue.releasedBy = jobqueueDto.releasedBy;
             jobQueue.releasedTime = jobqueueDto.releasedTime;
             jobQueue.releasedType = jobqueueDto.releasedType;
