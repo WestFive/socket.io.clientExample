@@ -599,6 +599,10 @@ namespace LaneDataSimulator
         {
             workingJobQueue = JobQueues[comboBox1.SelectedItem.ToString()];
             reload(workingJobQueue, JobQueueTree);
+            if(button1.Enabled==false)
+            {
+                button1.Enabled = true;
+            }
         }
 
         private void button1_Click_1(object sender, EventArgs e)
