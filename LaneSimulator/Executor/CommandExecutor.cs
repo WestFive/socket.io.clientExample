@@ -68,7 +68,6 @@ namespace LaneSimulator.Executor
                     commandExecutorResult?.Invoke(command);// 回调给主窗体打印日志
                     //jobQueueDTO jobqueuedto = JsonConvert.DeserializeObject<jobQueueDTO>(File.ReadAllText(Application.StartupPath + "/conf/jobQueueDTO.json"));//读取默认jobQueueDTO
                     //jobqueuedto = setJobQueueDTO(workingQueue, jobqueuedto);//将当前workingQueue的                    
-
                     jobQueueDTO jobqueueDto = jobqueueMapper.toDto(workingQueue);
                     command.commandName = "解析jobQueudto完成,准备调用API";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志

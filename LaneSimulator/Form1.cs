@@ -444,7 +444,8 @@ namespace LaneDataSimulator
             }
             catch (Exception ex)
             {
-                AppendLog("reciveP2pMessage", 3, "接收到点对点数据" + str);
+                AppendLog("reciveP2pMessage", 3, "接收到点对点数据" + str+"-"+"出现错误"+ex.ToString());
+              
             }
         }
 
