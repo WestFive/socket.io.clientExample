@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
             this.textJobQueuePoolName = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textLanePoolName = new System.Windows.Forms.TextBox();
@@ -58,7 +59,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.button2 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.tabMain.SuspendLayout();
             this.tabLane.SuspendLayout();
@@ -89,6 +89,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1164, 104);
             this.panel1.TabIndex = 0;
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(1017, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(130, 75);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "测试指令";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // textJobQueuePoolName
             // 
@@ -176,7 +186,7 @@
             this.textBoxapiAddress.Name = "textBoxapiAddress";
             this.textBoxapiAddress.Size = new System.Drawing.Size(233, 21);
             this.textBoxapiAddress.TabIndex = 4;
-            this.textBoxapiAddress.Text = "http://dev.pingfang.net/messagehubv2";
+            this.textBoxapiAddress.Text = "http://10.1.1.107:8081";
             // 
             // label2
             // 
@@ -202,7 +212,7 @@
             this.textBoxMessageHubUrl.Name = "textBoxMessageHubUrl";
             this.textBoxMessageHubUrl.Size = new System.Drawing.Size(233, 21);
             this.textBoxMessageHubUrl.TabIndex = 0;
-            this.textBoxMessageHubUrl.Text = "http://dev.pingfang.net:5004";
+            this.textBoxMessageHubUrl.Text = "http://10.1.1.107:5004";
             // 
             // tabMain
             // 
@@ -362,16 +372,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(1148, 123);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
-            // 
-            // button2
-            // 
-            this.button2.Location = new System.Drawing.Point(1017, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(130, 75);
-            this.button2.TabIndex = 14;
-            this.button2.Text = "测试指令";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // Form1
             // 

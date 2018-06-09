@@ -36,11 +36,11 @@ namespace MessageHub
         public delegate void HubError(string str);
         public event HubError reciveHubError;
         #endregion
-
         #region 接收点对点消息
         public delegate void P2pMessage(string str);
         public event P2pMessage reciveP2pMessage;
         #endregion
+
 
         public string laneCode;
 
@@ -124,6 +124,7 @@ namespace MessageHub
                         reciveStatus?.Invoke("尝试创建池");
                         socket.Emit("createPool", JsonConvert.SerializeObject(new PoolCUR(messagecreate.poolName, "public", "updateTime", true, "", laneCode)));
                         AddMessage(messagecreate);
+                        return;
                     }
                     else
                     {

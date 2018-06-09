@@ -37,7 +37,12 @@ namespace LaneSimulator.Mapper
             jobQueueDto.releaseRuleResults = jobQueue.releaseRuleResults;
             foreach (var item in jobQueueDto.releaseRuleResults)
             {
-                item.updateTime = Convert.ToDateTime(jobQueue.endTime).ToString("s") + "Z";
+                if (item.updateTime.EndsWith("Z") != true)
+                {
+
+
+                    item.updateTime = DateTime.Now.ToString("s") + "Z";
+                }
 
             }
             jobQueueDto.releasedType = jobQueue.releasedType;

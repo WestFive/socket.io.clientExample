@@ -10,11 +10,7 @@ using System.Windows.Forms;
 namespace LaneDataSimulator.util
 {
     public class NodeUtil
-    {
-
-      
-
-
+    {      
         public void AddChildNode(TreeNode node)
         {
             Dictionary<string, dynamic> dic = new Dictionary<string, dynamic>();
