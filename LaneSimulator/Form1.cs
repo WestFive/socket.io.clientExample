@@ -416,6 +416,13 @@ namespace LaneDataSimulator
                 comboBox1.Items.Clear();
                 comboBox1.Text = "";
                 buttonConnectMessageHub.Text = "注册监听";
+                textLanePoolName.Enabled = true;
+                textBoxLaneCode.Enabled = true;
+                textBoxapiAddress.Enabled = true;
+                textBoxMessageHubUrl.Enabled = true;
+                textJobQueuePoolName.Enabled = true;
+                textLanePoolName.Enabled = true;
+                textBoxlaneName.Enabled = true;
             }
 
 

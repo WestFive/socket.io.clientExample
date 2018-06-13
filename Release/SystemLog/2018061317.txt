@@ -6,3 +6,179 @@
 
 [2018-06-13 17:31:01:582]----,reciveStatusReturn:推送消息服务成功
 
+[2018-06-13 17:32:57:897]----,update:更新节点值lane成功
+
+[2018-06-13 17:33:04:068]----,update:更新节点值lane成功
+
+[2018-06-13 17:33:05:433]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:33:07:020]----,update:更新节点值lane成功
+
+[2018-06-13 17:33:08:349]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:33:10:369]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:33:13:390]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:33:17:397]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:34:28:653]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:30:854]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:32:753]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:34:388]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:35:881]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:37:239]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:40:254]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:42:052]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:43:461]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:45:150]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:46:491]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:34:48:672]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:50:003]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:34:51:181]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:52:488]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:34:53:276]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:54:599]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
+[2018-06-13 17:34:55:382]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:57:031]----,update:更新节点值lane成功
+
+[2018-06-13 17:34:58:365]----,reciveHubError:err:Quobject.EngineIoClientDotNet.Client.EngineIOException: xhr poll error ---> System.AggregateException: 发生一个或多个错误。 ---> System.Net.WebException: 无法连接到远程服务器 ---> System.Net.Sockets.SocketException: 由于目标计算机积极拒绝，无法连接。 10.1.1.107:5004
+   在 System.Net.Sockets.Socket.DoConnect(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   在 System.Net.ServicePoint.ConnectSocketInternal(Boolean connectFailure, Socket s4, Socket s6, Socket& socket, IPAddress& address, ConnectSocketState state, IAsyncResult asyncResult, Exception& exception)
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Net.HttpWebRequest.GetResponse()
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.<Create>b__7_0()
+   在 System.Threading.Tasks.Task.InnerInvoke()
+   在 System.Threading.Tasks.Task.Execute()
+   --- 内部异常堆栈跟踪的结尾 ---
+   在 System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   在 System.Threading.Tasks.Task.Wait(Int32 millisecondsTimeout, CancellationToken cancellationToken)
+   在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
+   --- 内部异常堆栈跟踪的结尾 ---
+
