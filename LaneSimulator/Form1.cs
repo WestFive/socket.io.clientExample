@@ -165,7 +165,7 @@ namespace LaneDataSimulator
             reload(lane, treeLane);
         }
 
-
+        
         /// <summary>
         /// 根据点击的节点 获取完整路径 更新具体属性值
         /// </summary>
@@ -173,6 +173,7 @@ namespace LaneDataSimulator
         /// <param name="value"></param>
         private void UpdateData(string fullpath, string value)
         {
+            
 
             List<string> counts = fullpath.Split("\\".ToArray()).ToList();
             if (fullpath.StartsWith("lane"))

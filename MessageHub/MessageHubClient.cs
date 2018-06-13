@@ -40,15 +40,10 @@ namespace MessageHub
         public delegate void P2pMessage(string str);
         public event P2pMessage reciveP2pMessage;
         #endregion
-
-
+        public delegate void ServerInfo(string str);
+        public event ServerInfo receiveServerInfo;
         public string laneCode;
-
-        public string apiAddress { get; set; }
-
-
-
-
+        public string apiAddress { get; set; }        
         /// <summary>
         /// CreateHub
         /// </summary>
@@ -57,17 +52,12 @@ namespace MessageHub
         /// <param name="HubParams">参数例如：传入一个Dictionary dic = {{"Name","xiamenxxxxx"},{"Type","client"}}</param>
         public MessageHubClient(string HubAddress, string apiAddress, string laneCode)
         {
-
-
             this.HubAddress = HubAddress;
             this.laneCode = laneCode;
-
             RedisManager.url = HubAddress;
-
             this.apiAddress = apiAddress;
-
         }
-        Socket socket;
+       public  Socket socket;
         public void HubInit()
         {
             try
@@ -98,6 +88,13 @@ namespace MessageHub
                 {
                     reciveHubError?.Invoke(data.ToString());
                 });
+                socket.On("receivePoolInfo", (data) =>
+                {
+                    receiveServerInfo?.Invoke(data.ToString());
+
+                });
+
+                socket.Emit("listenPool", "laneServer");
             }
             catch (Exception ex)
             {
@@ -117,20 +114,7 @@ namespace MessageHub
             {
                 socket.Emit("createMessage", (data) =>
                 {
-                    Response res = JsonConvert.DeserializeObject<Response>(data.ToString());
-                    if (res.code != 200)
-                    {
-                        reciveHubError?.Invoke("推送消息发生错误");
-                        reciveStatus?.Invoke("尝试创建池");
-                        socket.Emit("createPool", JsonConvert.SerializeObject(new PoolCUR(messagecreate.poolName, "public", "updateTime", true, "", laneCode)));
-                        AddMessage(messagecreate);
-                        return;
-                    }
-                    else
-                    {
-                        reciveStatus?.Invoke(res.message);
-                    }
-
+                    reciveStatus?.Invoke("推送消息服务成功");
                 }, JsonConvert.SerializeObject(messagecreate));
             }
             catch (Exception ex)//尝试用API的方式发送
