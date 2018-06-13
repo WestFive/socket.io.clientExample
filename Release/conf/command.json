@@ -1,10 +1,15 @@
 {
     "commandCode":"bfea0d75-7aff-4e1c-b4e4-93abe65ad6d8",
-    "commandName":"startUpLaneAgent",
+    "commandName":"manualRelease",
     "senderCode":"WebChromeClient",
     "senderName":"ChromeClient1",
-    "recipientType":"WatchDog",
+    "recipientType":"LaneAgent",
     "recipientCode":"CN-XIAMEN-XHCT-L01",
-    "parameter":{},
+    "parameter":{
+				"releaseResult":"RELEASE_PERMIT",
+				"releasedType":"人工放行",
+				"releasedBy":"admin",
+				"releasedTime":"2018-05-15 16:17:55"
+				},
     "sendTime":"2018-05-15 16:17:55"
 }

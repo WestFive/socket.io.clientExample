@@ -1,0 +1,72 @@
+[2018-06-13 19:27:10:175]----,update:更新节点值lane成功
+
+[2018-06-13 19:27:12:913]----,reciveMessage:CN-XIAMEN-XHCT-L02登录成功
+
+[2018-06-13 19:27:17:467]----,update:更新节点值jobQueue成功
+
+[2018-06-13 19:27:17:570]----,reciveStatusReturn:推送消息服务成功
+
+[2018-06-13 19:27:19:392]----,commandResult:startUpLaneAgent
+
+[2018-06-13 19:27:38:934]----,commandResult:startUpLaneAgent
+
+[2018-06-13 19:36:52:764]----,update:更新节点值lane成功
+
+[2018-06-13 19:36:55:076]----,reciveMessage:CN-XIAMEN-XHCT-L02登录成功
+
+[2018-06-13 19:36:56:252]----,update:更新节点值jobQueue成功
+
+[2018-06-13 19:36:56:366]----,reciveStatusReturn:推送消息服务成功
+
+[2018-06-13 19:37:03:822]----,commandResult:startUpLaneAgent
+
+[2018-06-13 19:37:52:464]----,commandResult:startUpLaneAgent
+
+[2018-06-13 19:38:25:479]----,update:更新节点值lane成功
+
+[2018-06-13 19:38:27:611]----,reciveMessage:CN-XIAMEN-XHCT-L02登录成功
+
+[2018-06-13 19:38:28:274]----,update:更新节点值jobQueue成功
+
+[2018-06-13 19:38:28:392]----,reciveStatusReturn:推送消息服务成功
+
+[2018-06-13 19:38:44:865]----,reciveP2pMessage:接收到点对点数据{"commandCode":"bfea0d75-7aff-4e1c-b4e4-93abe65ad6d8","commandName":"manualRelease","senderCode":"WebChromeClient","senderName":"ChromeClient1","recipientType":"WatchDog","recipientCode":"CN-XIAMEN-XHCT-L01","parameter":{},"sendTime":"2018-05-15 16:17:55"}-出现错误System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 CallSite.Target(Closure , CallSite , Object , String )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecute2[T0,T1,TRet](CallSite site, T0 arg0, T1 arg1)
+   在 LaneSimulator.Executor.CommandExecutor.resolveCommand(Command command, JobQueue workingQueue, Lane lane) 位置 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\Executor\CommandExecutor.cs:行号 81
+   在 CallSite.Target(Closure , CallSite , CommandExecutor , Command , Object , Object )
+   在 System.Dynamic.UpdateDelegates.UpdateAndExecuteVoid4[T0,T1,T2,T3](CallSite site, T0 arg0, T1 arg1, T2 arg2, T3 arg3)
+   在 LaneDataSimulator.Form1.MessagehubClient_reciveP2pMessage(String str) 位置 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\Form1.cs:行号 445
+
+[2018-06-13 19:38:56:292]----,reciveP2pMessage:接收到点对点数据{"commandCode":"bfea0d75-7aff-4e1c-b4e4-93abe65ad6d8","commandName":"manualRelease","senderCode":"WebChromeClient","senderName":"ChromeClient1","recipientType":"WatchDog","recipientCode":"CN-XIAMEN-XHCT-L01","parameter":{},"sendTime":"2018-05-15 16:17:55"}-出现错误System.Collections.Generic.KeyNotFoundException: 给定关键字不在字典中。
+   在 System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   在 CallSite.Target(Closure , CallSite , Object , String )
+   在 LaneSimulator.Executor.CommandExecutor.resolveCommand(Command command, JobQueue workingQueue, Lane lane) 位置 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\Executor\CommandExecutor.cs:行号 81
+   在 CallSite.Target(Closure , CallSite , CommandExecutor , Command , Object , Object )
+   在 LaneDataSimulator.Form1.MessagehubClient_reciveP2pMessage(String str) 位置 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\Form1.cs:行号 445
+
+[2018-06-13 19:39:51:791]----,update:更新节点值lane成功
+
+[2018-06-13 19:39:53:960]----,reciveMessage:CN-XIAMEN-XHCT-L02登录成功
+
+[2018-06-13 19:39:55:776]----,update:更新节点值jobQueue成功
+
+[2018-06-13 19:39:55:900]----,reciveStatusReturn:推送消息服务成功
+
+[2018-06-13 19:43:46:574]----,update:更新节点值lane成功
+
+[2018-06-13 19:43:48:833]----,reciveMessage:CN-XIAMEN-XHCT-L02登录成功
+
+[2018-06-13 19:43:50:099]----,update:更新节点值jobQueue成功
+
+[2018-06-13 19:43:50:212]----,reciveStatusReturn:推送消息服务成功
+
+[2018-06-13 19:44:05:586]----,commandResult:持久化数据完成
+
+[2018-06-13 19:44:05:607]----,update:更新节点值jobQueue成功
+
+[2018-06-13 19:44:05:711]----,reciveJobQueue:作业发生修改,已更新
+
+[2018-06-13 19:44:05:820]----,reciveStatusReturn:推送消息服务成功
+

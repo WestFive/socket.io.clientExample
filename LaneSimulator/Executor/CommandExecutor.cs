@@ -20,6 +20,8 @@ namespace LaneSimulator.Executor
     /// </summary>
     public class CommandExecutor
     {
+
+        public static string RESULT_API_URL = "http://10.1.1.5:8081";
         public delegate void commandExecutor(object obj);
 
         public event commandExecutor commandExecutorResult;
@@ -69,7 +71,7 @@ namespace LaneSimulator.Executor
                     jobQueueDTO jobqueueDto = jobqueueMapper.toDto(workingQueue);
                     command.commandName = "解析jobQueudto完成,准备调用API";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
-                    string result = WebApi.Post("http://10.1.1.114:8081/api/release-rule-executor", JsonConvert.SerializeObject(jobqueueDto));//请求规则执行器API
+                    string result = WebApi.Post(RESULT_API_URL+"/api/release-rule-executor", JsonConvert.SerializeObject(jobqueueDto));//请求规则执行器API
                     jobQueueDTO apiResultDto = JsonConvert.DeserializeObject<jobQueueDTO>(result);//获取返回jobQueueDTO结果
                     workingQueue = jobqueueMapper.toEntity(apiResultDto, workingQueue);
                     command.commandName = "接收结果并赋值完成";
@@ -84,7 +86,7 @@ namespace LaneSimulator.Executor
                     workingQueue.releasedTime = commandParam["releasedTime"];
                     jobQueueDTO saveDbJobQueueDto = jobqueueMapper.toDto(workingQueue);
                     //将jobQueueDTO进行持久化
-                    WebApi.Post("http://10.1.1.114:8081/api/job-queues", JsonConvert.SerializeObject(saveDbJobQueueDto),"PUT");//入库
+                    WebApi.Post(RESULT_API_URL + "/api/job-queues", JsonConvert.SerializeObject(saveDbJobQueueDto),"PUT");//入库
                     command.commandName = "持久化数据完成";
                     commandExecutorResult?.Invoke(command); //回调给主窗体打印日志
                     commandExecutorResult?.Invoke(workingQueue);//回调给主窗体更新workingQueue推送

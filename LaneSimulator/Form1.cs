@@ -816,6 +816,7 @@ namespace LaneDataSimulator
 
         private void button2_Click(object sender, EventArgs e)
         {
+            CommandExecutor.RESULT_API_URL = textBox1.Text;
             LaneSimulator.Model.Domain.Command com = JsonConvert.DeserializeObject<LaneSimulator.Model.Domain.Command>(File.ReadAllText(Application.StartupPath + "/conf/command.json"));
             messagehubClient.sendP2pMessge(new MessageHub.Model.Message.MessageP2p(textBoxLaneCode.Text, JsonConvert.SerializeObject(com)));
         }

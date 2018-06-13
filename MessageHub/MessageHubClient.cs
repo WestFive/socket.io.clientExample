@@ -163,11 +163,18 @@ namespace MessageHub
 
         public void sendP2pMessge(MessageP2p message)
         {
-            string url = apiAddress + "/p2pMessage";
-            Console.WriteLine(message.receiver);
-            dynamic str = WebApi.Post(url, JsonConvert.SerializeObject(message));
-            Response res = JsonConvert.DeserializeObject<Response>(str);
-            reciveMessage?.Invoke(res.message);
+            try
+            {
+                socket.Emit("p2p", JsonConvert.SerializeObject(message));
+            }
+            catch (Exception ex)
+            {
+                string url = apiAddress + "/p2pMessage";
+                Console.WriteLine(message.receiver);
+                dynamic str = WebApi.Post(url, JsonConvert.SerializeObject(message));
+                Response res = JsonConvert.DeserializeObject<Response>(str);
+                reciveMessage?.Invoke(res.message);
+            }
         }
 
 
