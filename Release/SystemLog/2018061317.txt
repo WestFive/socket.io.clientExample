@@ -182,3 +182,17 @@
    在 Quobject.EngineIoClientDotNet.Client.Transports.PollingXHR.XHRRequest.Create()
    --- 内部异常堆栈跟踪的结尾 ---
 
+[2018-06-13 17:54:11:468]----,update:更新节点值lane成功
+
+[2018-06-13 17:54:13:643]----,reciveMessage:CN-XIAMEN-XHCT-L02登录成功
+
+[2018-06-13 17:59:14:074]----,update:更新节点值jobQueue成功
+
+[2018-06-13 17:59:14:198]----,reciveStatusReturn:推送消息服务成功
+
+[2018-06-13 17:59:19:118]----,reciveStatusReturn:{"code":200,"message":"删除消息成功","title":"deleteMessage","data":"jobQueue8cd148fc-1aca-4258-ac89-32da8b927f2e"}
+
+[2018-06-13 17:59:21:621]----,update:更新节点值jobQueue成功
+
+[2018-06-13 17:59:21:744]----,reciveStatusReturn:推送消息服务成功
+
