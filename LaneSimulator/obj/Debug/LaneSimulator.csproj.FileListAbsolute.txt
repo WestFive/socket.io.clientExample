@@ -75,3 +75,6 @@ D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\obj\Debug\LaneSimula
 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\obj\Debug\LaneDataSimulator.Form1.resources
 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\obj\Debug\LaneSimulator.Properties.Resources.resources
 D:\项目代码\云闸口V2\LaneDataSimulator\LaneSimulator\obj\Debug\LaneSimulator.csproj.GenerateResource.Cache
+D:\项目代码\云闸口V2\LaneDataSimulator\Release\LaneSimulator.exe.config
+D:\项目代码\云闸口V2\LaneDataSimulator\Release\LaneSimulator.exe
+D:\项目代码\云闸口V2\LaneDataSimulator\Release\LaneSimulator.pdb
