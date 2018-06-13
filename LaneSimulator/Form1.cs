@@ -398,6 +398,7 @@ namespace LaneDataSimulator
                 textJobQueuePoolName.Enabled = false;
                 textLanePoolName.Enabled = false;
                 textBoxlaneName.Enabled = false;
+                textBox1.Enabled = false;
 
             }
 
@@ -423,6 +424,7 @@ namespace LaneDataSimulator
                 textJobQueuePoolName.Enabled = true;
                 textLanePoolName.Enabled = true;
                 textBoxlaneName.Enabled = true;
+                textBox1.Enabled = true;
             }
 
 
