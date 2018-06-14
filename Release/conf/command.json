@@ -1,4 +1,4 @@
-{
+锘縶
     "commandCode":"bfea0d75-7aff-4e1c-b4e4-93abe65ad6d8",
     "commandName":"manualRelease",
     "senderCode":"WebChromeClient",
@@ -7,7 +7,7 @@
     "recipientCode":"CN-XIAMEN-XHCT-L01",
     "parameter":{
 				"releaseResult":"RELEASE_PERMIT",
-				"releasedType":"人工放行",
+				"releasedType":"浜哄伐鏀捐",
 				"releasedBy":"admin",
 				"releasedTime":"2018-05-15 16:17:55"
 				},
